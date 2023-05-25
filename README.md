@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Сборка
+
+Сборку делал с помощью yarn. При запуске можно использовать yarn, либо удалить файл yarn.lock и запустить сборку через npm.
 ## Available Scripts
 
 In the project directory, you can run:
