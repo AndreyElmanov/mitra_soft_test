@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const onResponse = (res) => res.status === 200 ? res.data : Promise.reject(`Ошибка: ${res.status}`);
+const onResponse = (res) => res.status === 200 ? Promise.resolve(res.data) : Promise.reject(`Ошибка: ${res.status}`);
 
 class Api {
     constructor() {
@@ -8,18 +8,18 @@ class Api {
       }
 
     getPosts = () => {
-        axios.get(`${this.url}/posts`)
-        .then(onResponse)
+       return axios.get(`${this.url}/posts`)
+        .then(onResponse);
     }
 
     getUsers = () => {
-        axios.get(`${this.url}/users`)
-        .then(onResponse)
+       return axios.get(`${this.url}/users`)
+        .then(onResponse);
     }
 
     getCommentsOfPost = (id) => {
-        axios.get(`${this.url}/posts/${id}/comments`)
-        .then(onResponse)
+       return axios.get(`${this.url}/posts/${id}/comments`)
+        .then(onResponse);
     }
 };
 

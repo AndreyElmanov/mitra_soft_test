@@ -1,0 +1,33 @@
+.avatar_style {
+    width: 7%;
+    min-width: 70px;
+    border-radius: 50%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.all_posts {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: auto;
+}
+
+@media (max-width: 1399px) {
+	.all_posts {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 1199px) {
+	.all_posts {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.all_posts {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

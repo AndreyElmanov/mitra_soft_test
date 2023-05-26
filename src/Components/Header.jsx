@@ -4,15 +4,9 @@ import avatar from "../assets/avatar.jpg";
 import MyInfo from "../Blocks/MyInfo";
 
 export default function Header() {
-    const avatar_style = {
-        width: "7%",
-        minWidth: "50px",
-        borderRadius: "50%",
-    };
-
-    return <Navbar sticky="top" className="pt-0" expand={false} bg="light">
+    return <Navbar sticky="top" className="pt-0" expand={false} bg="white">
             <Container className="border border-top-0 border-secondary" >
-                <Image src={avatar} alt="Аватар" className="m-1" style={avatar_style}/>
+                <Image src={avatar} alt="Аватар" className="avatar_style m-1" />
                 <MyInfo />
                 <Navbar.Toggle aria-controls="offcanvasNavbar-expand-false" />
                 <Navbar.Offcanvas
