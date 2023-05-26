@@ -4,15 +4,15 @@ import Post from "../Components/Post";
 import api from "../utils/api";
 
 export default function AllPosts() {
-    const [userPosts, setUserPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         api.getPosts()
-        .then(res => setUserPosts(res))
+        .then(res => setPosts(res))
         .catch(e => console.log(e))
     }, []);
 
     return <Container fluid className="all_posts">
-            {userPosts.map(el => <Post post={el} key={el.id}/>)}
+            {posts.map(el => <Post post={el} key={el.id}/>)}
            </Container>
 }

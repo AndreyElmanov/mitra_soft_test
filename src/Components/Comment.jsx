@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 export default function Comment({email, text}) {
-    return <Card style={{ maxWidth: '25rem' }} className="m-1">
+    return <Card style={{ maxWidth: '100%' }} className="mt-1 mb-1">
             <Card.Body>
                 <Card.Title>{email}</Card.Title>
                 <Card.Text>{text}</Card.Text>

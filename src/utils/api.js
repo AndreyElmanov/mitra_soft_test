@@ -17,6 +17,11 @@ class Api {
         .then(onResponse);
     }
 
+    getOneUser = (id) => {
+        return axios.get(`${this.url}/users/${id}`)
+         .then(onResponse);
+     }
+
     getCommentsOfPost = (id) => {
        return axios.get(`${this.url}/posts/${id}/comments`)
         .then(onResponse);

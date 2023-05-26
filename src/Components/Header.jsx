@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Image, Nav, NavLink, Navbar, Offcanvas } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Button, Container, Image, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import avatar from "../assets/avatar.jpg";
 import MyInfo from "../Blocks/MyInfo";
 
@@ -20,8 +21,12 @@ export default function Header() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <NavLink to="#action1">Список постов</NavLink>
-                            <NavLink to="#action2">Обо мне</NavLink>
+                            <NavLink to="/">
+                                <Button variant="light">Список постов</Button>
+                            </NavLink>
+                            <NavLink to="/aboutme">
+                                <Button variant="light">Обо мне</Button>
+                            </NavLink>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
