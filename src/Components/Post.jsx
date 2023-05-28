@@ -1,44 +1,57 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Button, Card, Container } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button, Card, Spinner } from "react-bootstrap";
 import avatar from "../assets/avatar.jpg";
 import api from "../utils/api";
 import Comment from "./Comment";
-import Loader from "./Loader";
-
+import { reduserAction } from "../reducers/store";
 
 export default function Post({post}) {
     const [showComments, setShowComments] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
     const [comments, setComments] = useState([]);
+    const pathname = useLocation().pathname;
+    const navigate = useNavigate();
     let post_title = post.title;
     let post_text = post.body;
     let post_id = post.id;
     let user_id = post.userId;
 
     const handleShowComments = () => {
-        !showComments && api.getCommentsOfPost(post_id).then(res=>setComments(res));
+        if (!showComments) {
+            setShowSpinner(true)
+            api.getCommentsOfPost(post_id)
+            .then(res => setComments(res))
+            .catch(e => console.log(e))
+            .finally(() => setTimeout(() => setShowSpinner(false), 500));
+        };
         setShowComments(!showComments);
     };
 
-    const setUserInfo = () => console.log(user_id);
+    const setUserInfo = () => {
+        if (pathname !== `/user/${user_id}`) {
+            navigate(`/user/${user_id}`);
+            reduserAction.loadStart();
+            api.getOneUser(user_id)
+            .then(res => reduserAction.setUser(res))
+            .catch(e => console.log(e))
+            .finally(() => setTimeout(reduserAction.loadStop, 500));
+        }
+    };
 
     return <Card style={{ maxWidth: '25rem' }} className="m-1">
-            <NavLink to={`/user/${user_id}`} onClick={setUserInfo}>
-                <Card.Img variant="top" src={avatar} className="avatar_style m-1 cursor-pointer"/>
-            </NavLink>
+            <Card.Img variant="top" src={avatar} className="avatar_style m-1 cursor-pointer" onClick={setUserInfo}/>
             <Card.Body>
                 <Card.Title>{post_title}</Card.Title>
                 <Card.Text>{post_text}</Card.Text>
                 <Button variant="primary" onClick={handleShowComments}>
-                    {showComments ? "Скрыть комментарии" : "Показать комментарии"}
+                    {(showComments && !showSpinner) ? "Скрыть комментарии" : "Показать комментарии "}
+                    {showSpinner && <Spinner as="span" animation="border" variant="light" size="sm"/>}
                 </Button>
                 {showComments &&
                     <Card.Text as="div">
-                        <Loader>
-                            <Container className="d-flex flex-column">
-                                {comments.map(el => <Comment email={el.email} text={el.body} key={el.id}/>)}
-                            </Container>
-                        </Loader>
+                        {!showSpinner &&
+                            comments.map(el => <Comment email={el.email} text={el.body} key={el.id}/>)}
                     </Card.Text>}
             </Card.Body>
            </Card>

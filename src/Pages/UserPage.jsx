@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import Post from "../Components/Post";
-import api from "../utils/api";
 import UserInfo from "../Blocks/UserInfo";
 
 
-export default function UserPage() {
-    const [userPosts, setUserPosts] = useState([]);
-    let user_id = 6;
-
-    useEffect(() => {
-        api.getPosts()
-        .then(res => setUserPosts(res))
-        .catch(e => console.log(e))
-    }, []);
-
+function UserPage(props) {
     return <Container className="d-flex flex-column">
             <NavLink to='/'>
                 <Button variant="primary">
@@ -24,7 +15,16 @@ export default function UserPage() {
             </NavLink>
             <UserInfo />
             <Container fluid className="all_posts">
-                {userPosts.map(el => (el.userId === user_id) && <Post post={el} key={el.id}/>)}
+                {props.posts.map(el => (el.userId === props.user.id) && <Post post={el} key={el.id}/>)}
             </Container>
            </Container>
 }
+
+const mapStateToProps = (store) => {
+    return {
+        user: store.user,
+        posts: store.posts,
+    };
+};
+
+export default connect(mapStateToProps)(UserPage);

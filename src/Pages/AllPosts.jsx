@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Post from "../Components/Post";
-import api from "../utils/api";
 
-export default function AllPosts() {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        api.getPosts()
-        .then(res => setPosts(res))
-        .catch(e => console.log(e))
-    }, []);
+function AllPosts(props) {
+    let posts = props.posts ? props.posts : [];
 
     return <Container fluid className="all_posts">
             {posts.map(el => <Post post={el} key={el.id}/>)}
            </Container>
 }
+
+const mapStateToProps = (store) => {
+    return {
+        posts: store.posts,
+    };
+};
+
+export default connect(mapStateToProps)(AllPosts);
