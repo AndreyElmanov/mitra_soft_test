@@ -1,22 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
-import Post from "../Components/Post";
-import UserInfo from "../Blocks/UserInfo";
+import { Container } from "react-bootstrap";
+import UserInfo from "../Components/UserInfo";
+import NavButton from "../Components/NavButton";
+import AllPosts from "../Components/AllPosts";
 
 
 function UserPage(props) {
+    let user_posts = [];
+    props.posts.forEach(el => (el.userId === props.user.id) && user_posts.push(el));
+
     return <Container className="d-flex flex-column">
-            <NavLink to='/'>
-                <Button variant="primary">
-                    Назад
-                </Button>
-            </NavLink>
+            <NavButton to="/" text="Назад"/>
             <UserInfo />
-            <div className="all_posts">
-                {props.posts.map(el => (el.userId === props.user.id) && <Post post={el} key={el.id}/>)}
-            </div>
+            <AllPosts posts={user_posts} />
            </Container>
 }
 
