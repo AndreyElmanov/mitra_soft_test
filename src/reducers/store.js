@@ -4,6 +4,7 @@ const initialState = {
     posts: [],
     user: {},
     isLoad: false,
+    sort: "not_sort",
 }
 
 function allRedusers(state = initialState, action) {
@@ -28,6 +29,11 @@ function allRedusers(state = initialState, action) {
                 ...state,
                 isLoad: false
             };
+        case 'SORT':
+            return {
+                ...state,
+                sort: action.sort
+            };
         default:
             return state;
     }
@@ -38,6 +44,7 @@ export class reduserAction {
     static setUser = (data) => store.dispatch({type: 'SET_USER', user: data});
     static loadStart = () => store.dispatch({type: 'START'});
     static loadStop = () => store.dispatch({type: 'STOP'});
+    static setSort = (string) => store.dispatch({type: 'SORT', sort: string});
 }
 
 const loadState = () => {

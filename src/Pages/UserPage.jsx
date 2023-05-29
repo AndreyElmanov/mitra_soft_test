@@ -14,9 +14,9 @@ function UserPage(props) {
                 </Button>
             </NavLink>
             <UserInfo />
-            <Container fluid className="all_posts">
+            <div className="all_posts">
                 {props.posts.map(el => (el.userId === props.user.id) && <Post post={el} key={el.id}/>)}
-            </Container>
+            </div>
            </Container>
 }
 
