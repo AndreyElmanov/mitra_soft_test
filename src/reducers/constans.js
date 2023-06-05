@@ -1,0 +1,11 @@
+export const SET_POSTS = "SET_POSTS";
+export const SELECT_POST = "SELECT_POST";
+export const SET_POSTS_ERROR = "SET_POSTS_ERROR";
+export const SET_USER = "SET_USER";
+export const SELECT_USER = "SELECT_USER";
+export const SET_USER_ERROR = "SET_USER_ERROR";
+export const SET_COMMENTS = "SET_COMMENTS";
+export const SET_COMMENTS_ERROR = "SET_COMMENTS_ERROR";
+export const START = "START";
+export const STOP = "STOP";
+export const SORT = "SORT";

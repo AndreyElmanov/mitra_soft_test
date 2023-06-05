@@ -1,19 +1,12 @@
 import React from "react";
 import { Container, Spinner } from "react-bootstrap";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-function Loader(props) {
+export default function Loader(props) {
+    const isLoad = useSelector(store => store?.loadReducer?.isLoad);
     return <Container className="d-flex justify-content-center">
-            {props.isLoad
+            {isLoad
                 ? <Spinner as="span" animation="border" variant="primary" />
                 : props.children}
            </Container>
 }
-
-const mapStateToProps = (store) => {
-    return {
-        isLoad: store.isLoad,
-    };
-};
-
-export default connect(mapStateToProps)(Loader);

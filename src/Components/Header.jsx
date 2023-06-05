@@ -21,8 +21,8 @@ export default function Header() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <NavButton to="/" className="m-1" variant="light" text="Список постов" />
-                            <NavButton to="/aboutme" className="m-1" variant="light" text="Обо мне" />
+                            <NavButton to="/" variant="light" text="Список постов" />
+                            <NavButton to="/aboutme" variant="light" text="Обо мне" />
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
