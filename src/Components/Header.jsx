@@ -3,11 +3,13 @@ import { Container, Image, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import myphoto from "../assets/myphoto.jpg";
 import MyInfo from "./MyInfo";
 import NavButton from "./NavButton";
+import { useNavigate } from "react-router";
 
 export default function Header() {
+    const navigate = useNavigate();
     return <Navbar sticky="top" className="pt-0" expand={false} bg="white" >
             <Container className="border border-top-0 border-secondary" style={{borderEndStartRadius: "10px", borderEndEndRadius: "10px"}} >
-                <Image src={myphoto} alt="Моё фото" className="avatar_style m-1" />
+                <Image src={myphoto} alt="Моё фото" className="avatar_style m-1 cursor-pointer" onClick={()=>navigate('/aboutme')}/>
                 <MyInfo />
                 <Navbar.Toggle aria-controls="offcanvasNavbar-expand-false" />
                 <Navbar.Offcanvas
