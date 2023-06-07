@@ -13,7 +13,7 @@ export default function MainPage() {
     const sort = useSelector(store => store?.sortReducer?.sort);
     const posts_error = useSelector(store => store?.postsReducer?.error);
     const render_posts = searchString
-        ? posts.filter(el => el.title.toLowerCase().slice(0, searchString.length) === searchString)
+        ? posts.filter(el => el.title.toLowerCase().slice(0, searchString.length) === searchString.toLowerCase())
         : posts.filter(el => el);
     const posts_on_page = 20;
     let pages = Math.ceil(posts.length / posts_on_page);
