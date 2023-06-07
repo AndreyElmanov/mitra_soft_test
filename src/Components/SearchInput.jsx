@@ -15,5 +15,5 @@ export default function SearchInput(props) {
                     <option value="sort_z_a">От Я до А</option>
                 </Form.Control>
             </Form.Group>
-        </Form>
+           </Form>
 }

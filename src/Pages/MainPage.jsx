@@ -23,23 +23,19 @@ export default function MainPage() {
     (sort === "sort_z_a") && render_posts.sort((a, b) => b.title.localeCompare(a.title));
     (sort === "not_sort") && render_posts.sort();
 
-    useEffect(()=> {
-        if (render_posts.length < posts.length) setListNumber(1);
-    }, [render_posts]);
+    const start = posts_on_page * listNumber - posts_on_page;
+    const end = posts_on_page * listNumber;
+    show_posts = render_posts.slice(start, end);
+    pages = Math.ceil(render_posts.length / posts_on_page);
+    window.scrollTo({top: 0});
 
     const handleChangeSearchString = (event) => setSearchString(event.target.value);
     const handleClearSearchString = () => setSearchString('');
     const handleChangeSort = (event) => reducerAction.setSort(event.target.value);
-        
-    const handlePagination = () => {
-        let start = posts_on_page * listNumber - posts_on_page;
-        let end = posts_on_page * listNumber;
-        show_posts = render_posts.slice(start, end);
-        pages = Math.ceil(render_posts.length / posts_on_page);
-        window.scrollTo({top: 0});
-    };
-    
-    handlePagination();
+
+    useEffect(()=> {
+        if (render_posts.length < posts.length) setListNumber(1);
+    }, [render_posts]);
 
     return <Container>
             {!posts_error &&
