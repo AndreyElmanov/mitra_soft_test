@@ -9,7 +9,7 @@ export default function SearchInput(props) {
                             value={props.searchString}
                             onChange={props.handleChangeSearchString} />
                 {props.searchString && <Button className="m-1" onClick={props.handleClearSearchString}>X</Button>}
-                <Form.Control as="select" className="m-1 sort_button" onChange={props.handleChangeSort} defaultValue={props.sort}>
+                <Form.Control as="select" className="m-1 max_content" onChange={props.handleChangeSort} defaultValue={props.sort}>
                     <option value="not_sort">Без сортировки</option>
                     <option value="sort_a_z">От А до Я</option>
                     <option value="sort_z_a">От Я до А</option>
